@@ -144,7 +144,9 @@ export default function SpinnerSelector({ names }) {
         ref={wheelRef}
         onClick={spinning ? null : spin}
         className="
-          relative w-[450px] h-[450px]
+          relative
+          w-64 h-64
+          md:w-[450px] md:h-[450px]
           rounded-full shadow-2xl
           cursor-pointer bg-gray-100
         "
@@ -172,7 +174,7 @@ export default function SpinnerSelector({ names }) {
             active:scale-95 transition
           "
         >
-          🎡 Spin the Wheel
+          Spin the Wheel
         </button>
       ) : (
         <button
