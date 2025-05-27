@@ -1,0 +1,9 @@
+/* 1) Single import for Tailwind v4’s entire engine */
+@import "tailwindcss";
+
+/* 3) Your global base styles */
+@layer base {
+  html, body {
+    @apply bg-white text-gray-900;
+  }
+}
