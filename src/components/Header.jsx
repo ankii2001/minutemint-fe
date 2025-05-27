@@ -19,7 +19,7 @@ export default function Header() {
             <h1 className="text-2xl font-bold lowercase text-gray-800">
               minutemint
             </h1>
-            <p className="text-sm text-gray-500">
+            <p className="text-xs md:text-sm text-gray-500">
               Mint the moment. Make it slick, make it quick.
             </p>
           </div>
