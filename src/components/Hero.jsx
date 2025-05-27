@@ -31,7 +31,7 @@ export default function Hero() {
         }}
         className="py-16"
       >
-        <div className="container mx-auto flex flex-col md:flex-row items-center px-4 gap-8 mt-12">
+        <div className="container mx-auto flex flex-col md:flex-row items-center px-4 gap-8 mt-20">
           <div className="md:w-1/2 space-y-6">
             <h2 className="text-4xl font-bold text-gray-800">
               Welcome to MinuteMint
