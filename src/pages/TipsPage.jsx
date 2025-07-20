@@ -51,9 +51,9 @@ export default function TipsPage() {
         }
       `}</style>
 
-      <section className="py-12 bg-gray-50">
+      <section className="max-w-[92vw] mx-auto bg-gray-50 py-12 md:p-10 rounded-xl shadow-lg">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-extrabold text-gray-800 mb-8">
+          <h2 className="text-3xl font-extrabold text-gray-900 mb-6 border-b-4 border-green-500 inline-block pb-2">
             All Tips
           </h2>
 

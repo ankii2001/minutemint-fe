@@ -3,9 +3,18 @@ import api from '../utils/api';
 
 export default function TipList(){
   const [tips, setTips] = useState([]);
-  useEffect(()=>{
-    api.get('/tips').then(r=>setTips(r.data));
-  },[]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
+    api.get('/tips')
+      .then(r => setTips(r.data))
+      .catch(() => setError('Failed to load tips.'))
+      .finally(() => setLoading(false));
+  }, []);
+  if (loading) return <div className="text-center py-8">Loading tips…</div>;
+  if (error) return <div className="text-center text-red-500 py-8">{error}</div>;
   return (
     <ul className="space-y-3">
       {tips.map(t=>(

@@ -3,7 +3,7 @@ import * as XLSX from "xlsx";
 
 export default function FileUploader({ onLoadNames }) {
   return (
-    <label className="block mb-6 w-full">
+    <label className="block w-full">
       <span className="sr-only">Upload names</span>
       <input
         type="file"
