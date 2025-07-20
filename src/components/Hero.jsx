@@ -48,7 +48,7 @@ export default function Hero() {
           {/* ——— LEFT SIDE: Text + Glass Card ——— */}
           <div className="md:w-1/2 space-y-6 z-20">
             <h1 className="text-5xl lg:text-6xl font-extrabold text-gray-900 drop-shadow-lg">
-              Welcome to MinuteMintrp@
+              Welcome to MinuteMint
             </h1>
             <p className="text-lg lg:text-xl text-gray-700 max-w-md leading-relaxed">
               Share and discover 60-second tips, hacks, and micro-insights that
