@@ -33,24 +33,43 @@ export default function SpinnerPage() {
   return (
     <>
       <style>{`
-        @keyframes pulseRing {
-          0% {
-            transform: scale(1);
-            opacity: 0.6;
-          }
-          50% {
-            transform: scale(1.5);
-            opacity: 0.2;
-          }
-          100% {
-            transform: scale(2);
-            opacity: 0;
-          }
-        }
-      `}</style>
+  @keyframes pulseRing {
+    0%   { transform: scale(1);   opacity: 0.6; }
+    50%  { transform: scale(1.5); opacity: 0.2; }
+    100% { transform: scale(2);   opacity: 0;   }
+  }
 
-      <div className="bg-gradient-to-br from-purple-100 via-pink-100 to-indigo-100 w-full min-h-[calc(100vh-69px)] py-10 px-4 flex items-center justify-center">
-        <div className="w-full max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-start">
+  @keyframes pastelFlow {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+`}</style>
+
+      <div
+  className="
+    w-full min-h-[calc(100vh-69px)]
+    px-4 py-10
+    flex items-center justify-center
+    bg-[length:300%_300%]
+    animate-[pastelFlow_20s_ease-in-out_infinite]
+  "
+  style={{
+    background: `linear-gradient(50deg,
+      #fdf2f8,
+      #fce7f3,
+      #dcfce7,
+      #dbeafe,
+      #ede9fe
+    )`,
+  }}
+>
+
+  <div className="absolute inset-0 z-0 pointer-events-none">
+    <div className="w-full h-full bg-[url('/confetti.svg')] bg-repeat opacity-5 mix-blend-overlay"></div>
+  </div>
+
+        <div className="z-10 w-full max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-start">
           {/* Left Section: File Upload & QR */}
           <div className="flex flex-col space-y-6">
             {/* Upload Card */}
@@ -64,7 +83,7 @@ export default function SpinnerPage() {
               <div>
                 <h3 className="text-base font-medium text-gray-700 leading-snug">
                   {winner ? (
-                    <span>{winner}, please scan the QR to add your tip.</span>
+                    <span>Hey! {winner},<br/> <br/>Please scan the QR to add your tip. <br/> <br/> Best Regards, <br/>Ankit Luthra</span>
                   ) : (
                     <>
                       <span>Scan QR to add your tip.</span>
@@ -73,17 +92,30 @@ export default function SpinnerPage() {
                 </h3>
               </div>
               <div className="relative flex items-center justify-center">
-                <span
-                  className="absolute inline-flex h-50 w-50 rounded-full bg-green-500 opacity-40 animate-[pulseRing_2s_infinite]"
-                  style={{ animationFillMode: "forwards" }}
-                ></span>
-                <img
-                  src={qrCodeImg}
-                  alt="Scan to add tip"
-                  className="relative w-60 h-60 rounded-full border-4 border-white shadow-lg"
-                />
-              </div>
+  <span
+    className="absolute inline-flex h-60 w-60 rounded-full bg-green-400 opacity-40 blur-2xl animate-[pulseRing_2s_infinite]"
+    style={{ animationFillMode: "forwards" }}
+  ></span>
+  <img
+    src={qrCodeImg}
+    alt="Scan to add tip"
+    className="relative w-60 h-60 rounded-full border-4 border-white shadow-2xl"
+  />
+</div>
+
             </div>
+
+            {/* Winner Card: Same Width as Spinner */}
+            {winner && (
+              <div
+                key={winner}
+                className="text-center bg-white rounded-xl p-4 shadow-md border border-green-200"
+              >
+                <span className="inline-block text-xl font-extrabold text-green-700 drop-shadow-lg animate-bounce">
+                  🎉 {winner} 🎉
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Right Section: Spinner */}
@@ -98,18 +130,6 @@ export default function SpinnerPage() {
 
               <div className="absolute inset-0 rounded-2xl ring-2 ring-green-300/60 animate-pulse pointer-events-none"></div>
             </div>
-
-            {/* Winner Card: Same Width as Spinner */}
-            {winner && (
-              <div
-                key={winner}
-                className="w-80 text-center bg-white rounded-xl px-4 py-3 shadow-md border border-green-200"
-              >
-                <span className="inline-block text-xl font-extrabold text-green-700 drop-shadow-lg animate-bounce">
-                  🎉 {winner} 🎉
-                </span>
-              </div>
-            )}
 
           </div>
 
