@@ -33,42 +33,38 @@ export default function SpinnerPage() {
   return (
     <>
       <style>{`
-  @keyframes pulseRing {
-    0%   { transform: scale(1);   opacity: 0.6; }
-    50%  { transform: scale(1.5); opacity: 0.2; }
-    100% { transform: scale(2);   opacity: 0;   }
-  }
+        @keyframes pulseRing {
+          0%   { transform: scale(1);   opacity: 0.6; }
+          50%  { transform: scale(1.5); opacity: 0.2; }
+          100% { transform: scale(2);   opacity: 0;   }
+        }
 
-  @keyframes pastelFlow {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-`}</style>
+        @keyframes pastelFlow {
+          0%   { background-position: 0% 50%; }
+          50%  { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
 
       <div
-  className="
-    w-full min-h-[calc(100vh-69px)]
-    px-4 py-10
-    flex items-center justify-center
-    bg-[length:300%_300%]
-    animate-[pastelFlow_20s_ease-in-out_infinite]
-  "
-  style={{
-    background: `linear-gradient(50deg,
-      #fdf2f8,
-      #fce7f3,
-      #dcfce7,
-      #dbeafe,
-      #ede9fe
-    )`,
-  }}
->
-
-  <div className="absolute inset-0 z-0 pointer-events-none">
-    <div className="w-full h-full bg-[url('/confetti.svg')] bg-repeat opacity-5 mix-blend-overlay"></div>
-  </div>
-
+        className="
+          w-full min-h-[calc(100vh-69px)]
+          px-4 py-10
+          flex items-center justify-center
+          bg-[length:300%_300%]
+          animate-[pastelFlow_20s_ease-in-out_infinite]
+          overflow-hidden
+        "
+        style={{
+          background: `linear-gradient(50deg,
+            #fdf2f8,
+            #fce7f3,
+            #dcfce7,
+            #dbeafe,
+            #ede9fe
+          )`,
+        }}
+      >
         <div className="z-10 w-full max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-start">
           {/* Left Section: File Upload & QR */}
           <div className="flex flex-col space-y-6">
@@ -78,34 +74,35 @@ export default function SpinnerPage() {
               <FileUploader onLoadNames={handleLoadNames} />
             </div>
 
-            {/* QR Card */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-xl p-4 shadow-md border border-white/20 flex items-center justify-between space-x-4">
+            {/* QR Card — only show on md and up */}
+            <div className="hidden md:flex bg-white/70 backdrop-blur-sm rounded-xl p-4 shadow-md border border-white/20 items-center justify-between space-x-4">
               <div>
                 <h3 className="text-base font-medium text-gray-700 leading-snug">
                   {winner ? (
-                    <span>Hey! {winner},<br/> <br/>Please scan the QR to add your tip. <br/> <br/> Best Regards, <br/>Ankit Luthra</span>
+                    <span>
+                      Hey! {winner},<br /><br />
+                      Please scan the QR to add your tip. <br /><br />
+                      Best Regards, <br />Ankit Luthra
+                    </span>
                   ) : (
-                    <>
-                      <span>Scan QR to add your tip.</span>
-                    </>
+                    <span>Scan QR to add your tip.</span>
                   )}
                 </h3>
               </div>
               <div className="relative flex items-center justify-center">
-  <span
-    className="absolute inline-flex h-60 w-60 rounded-full bg-green-400 opacity-40 blur-2xl animate-[pulseRing_2s_infinite]"
-    style={{ animationFillMode: "forwards" }}
-  ></span>
-  <img
-    src={qrCodeImg}
-    alt="Scan to add tip"
-    className="relative w-60 h-60 rounded-full border-4 border-white shadow-2xl"
-  />
-</div>
-
+                <span
+                  className="absolute inline-flex h-60 w-60 rounded-full bg-green-400 opacity-40 blur-2xl animate-[pulseRing_2s_infinite]"
+                  style={{ animationFillMode: "forwards" }}
+                ></span>
+                <img
+                  src={qrCodeImg}
+                  alt="Scan to add tip"
+                  className="relative w-60 h-60 rounded-full border-4 border-white shadow-2xl"
+                />
+              </div>
             </div>
 
-            {/* Winner Card: Same Width as Spinner */}
+            {/* Winner Card */}
             {winner && (
               <div
                 key={winner}
@@ -121,18 +118,13 @@ export default function SpinnerPage() {
           {/* Right Section: Spinner */}
           <div className="flex flex-col items-center justify-center space-y-6">
             {/* Spinner Card */}
-            <div className="relative w-140 bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-2xl border border-white/30">
-            
-              {/* Spinner Wheel */}
+            <div className="relative w-full max-w-[500px] bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-2xl border border-white/30">
               <div className="pointer-events-auto">
                 <SpinnerSelector names={names} onWinnerSelect={setWinner} />
               </div>
-
               <div className="absolute inset-0 rounded-2xl ring-2 ring-green-300/60 animate-pulse pointer-events-none"></div>
             </div>
-
           </div>
-
         </div>
       </div>
     </>
