@@ -1,7 +1,7 @@
 // src/components/SpinnerSelector.jsx
 import React, { useRef, useEffect, useState } from "react";
 
-export default function SpinnerSelector({ names }) {
+export default function SpinnerSelector({ names, onWinnerSelect }) {
   const canvasRef = useRef(null);
   const wheelRef = useRef(null);
   const [winner, setWinner] = useState("");
@@ -209,6 +209,7 @@ export default function SpinnerSelector({ names }) {
             setSpinning(false);
             const selected = names[idx];
             setWinner(selected);
+            if (onWinnerSelect) onWinnerSelect(selected);
             launchConfetti();
           }, 200);
         }, 200);
@@ -225,7 +226,7 @@ export default function SpinnerSelector({ names }) {
           ref={wheelRef}
           onClick={spin}
           className={`
-            w-56 h-56 md:w-80 md:h-80
+            w-56 h-56 md:w-100 md:h-100
             rounded-full shadow-2xl bg-gray-50
             cursor-pointer
             ${spinning ? "opacity-75" : "hover:scale-105 hover:shadow-3xl"}
@@ -235,13 +236,6 @@ export default function SpinnerSelector({ names }) {
         >
           <canvas ref={canvasRef} className="w-full h-full rounded-full" />
         </div>
-        {winner && (
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <span className="text-2xl md:text-3xl font-extrabold text-green-700 drop-shadow-lg animate-bounce">
-              {winner}
-            </span>
-          </div>
-        )}
       </div>
 
       {/* Spin Button */}

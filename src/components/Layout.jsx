@@ -13,7 +13,7 @@ export default function Layout({ children }) {
         The padding-top here pushes content down below the header.
         Adjust 'pt-16' if your Header’s height differs.
       */}
-      <div className="pt-19 flex-1">
+      <div className="pt-6 flex-1">
         {children}
       </div>
 
